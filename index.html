@@ -208,7 +208,6 @@
 
         des = getQueryString("des");
         if (des !== undefined) {
-            des = decodeURIComponent(des);
             desc = document.querySelector("meta[name=description]");
             desc.setAttribute('content', des);
             for (var i = 0; i < metaList.length; i++) {
@@ -224,19 +223,16 @@
         }
         keyw = getQueryString("keyw");
         if (keyw !== undefined) {
-            keyw = decodeURIComponent(keyw);
             keywo = document.querySelector("meta[name=keywords]");
             keywo.setAttribute('content', keyw)
         }
         autho = getQueryString("author");
         if (autho !== undefined) {
-            autho = decodeURIComponent(autho);
             authoo = document.querySelector("meta[name=author]");
             authoo.setAttribute('content', autho)
         }
         ogImg = getQueryString("ogImg");
         if (ogImg !== undefined) {
-            ogImg = decodeURI(ogImg);
             for (var i = 0; i < metaList.length; i++) {
                 if (metaList[i].getAttribute("property") == "og:image") {
                     metaList[i].content = ogImg
@@ -278,7 +274,17 @@
 <!--
     Query String Template: 
 
-    ?title=test%26title&des=daa%26&img=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpicgo%2F20201222211227.png&imgDark=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpicgo%2F20201222211315.jpg&ogImg=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpicgo%2F20201222211315.jpg&con=%3Cp%2520class%253D%22subtitle%22%2520style%253D%22margin-top%253A%252030px%253B%2520font-size%253Alarge%22%3E%3Ca%2520href%253D%22%2523vcomments%22%3E%3Cspan%2520id%253D%22subtitle%22%3E%E7%82%B9%E6%88%91%E7%9B%B4%E8%BE%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%3C%252Fspan%3E%3C%252Fa%3E%3C%252Fp%3E&id=201221&keyw=key1%2Ckey2%2Ckey3&author=%e8%8e%b9%e8%8e%b9%e5%8d%95%e6%8e%a8%e4%ba%ba%2c%e6%8b%be%e5%90%be
+    ?title=1q%40%E6%B5%8B&des=2%EF%BC%88u%E6%88%91&img=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpicgo%2F20201222211227.png&imgDark=&ogImg=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpicgo%2F20201222211315.jpg&con=%3Cstyle%3Evideo%20%7Bmax-width%3A%20400px%20!important%3Bwidth%3A%20100%25%20!important%3B%7D%3C%2Fstyle%3E%3Cvideo%20controls%20src%3D%22https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpenguinproof_1080p.mp4%22%3E%3C%2Fvideo%3E&id=201221&keyw=key1%2C22%2C%E6%88%91%2C%EF%BC%8C&author=%E8%8E%B9%E8%8E%B9%E5%8D%95%E6%8E%A8%E4%BA%BA%26%E6%8B%BE%E5%90%BE
+
+
+    title: 1q@测
+    description: 2（u我
+    img: https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpicgo%2F20201222211227.png
+    imgDark: https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpicgo%2F20201222211315.jpg
+    ogImg: https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpicgo%2F20201222211315.jpg
+    con: %3Cstyle%3Evideo%20%7Bmax-width%3A%20400px%20!important%3Bwidth%3A%20100%25%20!important%3B%7D%3C%2Fstyle%3E%3Cvideo%20controls%20src%3D%22https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fholgerhuo%2Fcdn%2Fpenguinproof_1080p.mp4%22%3E%3C%2Fvideo%3E
+    keyw: key1,22,我,，
+    author: 莹莹单推人&拾吾
 
     © https://github.com/holgerhuo/
 
@@ -303,9 +309,8 @@
             <img id="dynimg"
                 style="padding-right: 0px !important;padding-left: 0px !important;max-width: 400px !important;width: 100% !important;padding-bottom: 0px !important;">
             <script>
-                title_enc = getQueryString("title");
-                if (title_enc !== undefined) {
-                    title = decodeURIComponent(title_enc);
+                title = getQueryString("title");
+                if (title !== undefined) {
                     document.title = title;
                     document.getElementById("title").innerHTML = title;
                     for (var i = 0; i < metaList.length; i++) {
@@ -319,15 +324,13 @@
                         }
                     }
                 }
-                img_url = getQueryString("img");
-                if (img_url !== undefined) {
-                    img_u = decodeURI(img_url)
+                img_u = getQueryString("img");
+                if (img_u !== undefined) {
                     document.getElementById("dynimg").src = img_u;
                     document.getElementById("meta").style.display = "none";
                     document.getElementById("jump").style.display = "block";
-                    imgd_url = getQueryString("imgDark");
-                    if (imgd_url !== undefined) {
-                        imgd_u = decodeURI(imgd_url)
+                    imgd_u = getQueryString("imgDark");
+                    if (imgd_u !== undefined) {
                         let prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
                         if (prefersDarkMode) {
                             document.getElementById("dynimg").src = imgd_u;
@@ -349,9 +352,8 @@
                         }
                     }
                 }
-                dyncon = getQueryString("con");
-                if (dyncon !== undefined) {
-                    con = decodeURIComponent(dyncon);
+                con = getQueryString("con");
+                if (con !== undefined) {
                     document.getElementById("dyncon").innerHTML = con;
                     document.getElementById("meta").style.display = "none";
                     document.getElementById("jump").style.display = "block";
